@@ -12,12 +12,11 @@ namespace ApplicationCore.Interfaces
     {
         Task<T> GetByIdAsync(int id);
         Task<List<T>> ListAllAsync();
-        Task<List<T>> ListAllAsync(ISpecification<T> spec);
+        Task<List<T>> ListAsync(ISpecification<T> spec);
         Task<T> AddAsync(T entity);
-        Task<T> UpdateAsync(T entity);
-        Task<T> DeleteAsync(T entity);
-        Task<T> CountAsync(ISpecification<T> spec);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task CountAsync(ISpecification<T> spec);
         Task<T> FirstAsync(ISpecification<T> spec);
         Task<T> FirstOrDefaultAsync(ISpecification<T> spec);
     }
-}
