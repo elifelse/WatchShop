@@ -11,5 +11,6 @@ namespace Web.ViewModels
 
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Brands { get; set; }
+        public PaginationInfoViewModel PaginationInfo { get; set; }
     }
 }

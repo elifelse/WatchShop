@@ -2,6 +2,7 @@
 using ApplicationCore.Interfaces;
 using ApplicationCore.Specifications;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,10 +22,15 @@ namespace Web.Services
             _categoryRepository = categoryRepository;
             _brandRepository = brandRepository;
         }
-        public async Task<HomeViewModel> GetHomeViewModelAsync(int? categoryId, int? brandId)
+        public async Task<HomeViewModel> GetHomeViewModelAsync(int? categoryId, int? brandId, int page)
         {
             var specProducts = new ProductsFilterSpecification(categoryId, brandId);
-            var products = await _productRepository.ListAsync(specProducts);
+            var totalItemsCount = await _productRepository.CountAsync(specProducts);
+            var totalPagesCount = (int)Math.Ceiling((decimal)totalItemsCount / Constants.ITEMS_PER_PAGE);
+
+            var specPaginatedProducts = new ProductsFilterPaginatedSpecification(categoryId, brandId,
+                (page - 1) * Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE);
+            var products = await _productRepository.ListAsync(specPaginatedProducts);
 
             var vm = new HomeViewModel()
             {
@@ -38,7 +44,16 @@ namespace Web.Services
                 Categories = await GetCategoriesAsync(),
                 Brands = await GetBrandsAsync(),
                 CategoryId = categoryId,
-                BrandId = brandId
+                BrandId = brandId,
+                PaginationInfo = new PaginationInfoViewModel()
+                {
+                    Page = page,
+                    TotalItems = totalItemsCount,
+                    TotalPages = totalPagesCount,
+                    ItemsOnPage = products.Count,
+                    HasPrevius = page > 1,
+                    HasNext = page < totalPagesCount
+                }
             };
 
             return vm;
