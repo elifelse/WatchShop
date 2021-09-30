@@ -20,11 +20,16 @@ Install-Package Ardalis.Specification
 ## EF Commands
 ** Default project : src\Infrastructure **
 
-Add-Migration InitialIdentity -Context AppIdentityDbContext -OutputDir "Identity/Migrations"
+* Add-Migration InitialIdentity -Context AppIdentityDbContext -OutputDir "Identity/Migrations"
 
-Update-Database -Context AppIdentityDbContext
+  Update-Database -Context AppIdentityDbContext
 
 
-Add-Migration InitialApp -Context ApplicationDbContext -OutputDir "Data/Migrations"
+* Add-Migration InitialApp -Context ApplicationDbContext -OutputDir "Data/Migrations"
 
-Update-Database -Context ApplicationDbContext
+  Update-Database -Context ApplicationDbContext
+
+
+* Add-Migration BasketAndBasketItems -Context ApplicationDbContext -OutputDir "Data/Migrations"
+
+  Update-Database -Context ApplicationDbContext
