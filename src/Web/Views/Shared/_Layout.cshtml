@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white fixed-top border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Web</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,14 +28,7 @@
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="#" class="btn btn-sm btn-warning">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span id="navbarBasketItemsCount" class="badge badge-light ml-1">0</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <vc:navbar-basket />
                 </div>
             </div>
         </nav>
