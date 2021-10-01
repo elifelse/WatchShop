@@ -1,8 +1,4 @@
-﻿using ApplicationCore.Entities;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Web.Interfaces;
 
@@ -15,6 +11,11 @@ namespace Web.Controllers
         public BasketController(IBasketViewModelService basketViewModelService)
         {
             _basketViewModelService = basketViewModelService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View();
         }
 
         [HttpPost]
