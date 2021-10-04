@@ -3,6 +3,7 @@ using ApplicationCore.Interfaces;
 using ApplicationCore.Specifications;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Web.Interfaces;
@@ -104,7 +105,20 @@ namespace Web.Services
 
             // TODO : sepeti öğeleriyle birlikte döndür
 
-            return null;
+            var spec = new BasketWithItemsAndProductsSpecification(basketId.Value);
+            var basket = await _basketRepository.FirstOrDefaultAsync(spec);
+            vm.Items = basket.Items.Select(x => new BasketItemViewModel()
+            {
+                Id = x.Id,
+                ProductId = x.ProductId,
+                ProductName = x.Product.ProductName,
+                PictureUri = x.Product.PictureUri,
+                Price = x.Product.Price,
+                Quantity = x.Quantity
+            }).ToList();
+            vm.TotalPrice = vm.Items.Sum(x => x.Quantity * x.Price);
+
+            return vm;
         }
 
         public async Task<int?> GetBasketIdAsync()

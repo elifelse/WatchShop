@@ -15,7 +15,7 @@ namespace Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _basketViewModelService.GetBasketViewModelAsync());
         }
 
         [HttpPost]
