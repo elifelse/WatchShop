@@ -12,6 +12,10 @@ namespace ApplicationCore.Interfaces
 
         Task<int> BasketItemsCountAsync(int basketId);
 
-        Task SetQuantities(int basketId, Dictionary<int, int> quantities);
+        Task SetQuantitiesAsync(int basketId, Dictionary<int, int> quantities);
+
+        Task RemoveBasketItemAsync(int basketId, int basketItemId);
+
+        Task DeleteBasketAsync(int basketId);
     }
 }
