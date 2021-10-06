@@ -77,7 +77,8 @@ namespace Web.Services
                 // Find the basket and return its id.
                 var spec = new BasketSpecification(anonymousUserId);
                 Basket basket = await _basketRepository.FirstOrDefaultAsync(spec);
-                return basket.Id;
+
+                if (basket != null) return basket.Id;
             }
 
             // If not, create a new basket with anonymous user id and return its id.
@@ -137,6 +138,16 @@ namespace Web.Services
             }
 
             return null;
+        }
+
+        public async Task TransferBasketAsync(string userId)
+        {
+            var anonymousUserId = _httpContextAccessor.HttpContext.Request.Cookies
+                [Constants.BASKET_COOKIENAME];
+
+            if (anonymousUserId == null || userId == null) return;
+            await _basketService.TransferBasketAsync(anonymousUserId, userId);
+            _httpContextAccessor.HttpContext.Response.Cookies.Delete(Constants.BASKET_COOKIENAME);
         }
     }
 }
