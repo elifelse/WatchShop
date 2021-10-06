@@ -34,6 +34,10 @@ Install-Package Ardalis.Specification
 
   Update-Database -Context ApplicationDbContext
 
+
+* Add-Migration OrderAndOrderDetails -Context ApplicationDbContext -OutputDir "Data/Migrations"
+
+  Update-Database -Context ApplicationDbContext
 ### Links
 
 https://mdbootstrap.com/docs/b4/jquery/ecommerce/design-blocks/shopping-cart/
