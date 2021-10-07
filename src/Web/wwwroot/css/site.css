@@ -97,3 +97,11 @@ body {
     font-size: 48px;
 }
 /* Basket End*/
+
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-errors > ul {
+    margin-bottom: 0;
+}

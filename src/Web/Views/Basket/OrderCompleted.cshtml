@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Order Completed";
+}
+
+<h1>Thank You for your Purchase</h1>
+<div class="card border-0">
+    <div class="card-body py-5">
+        <div class="text-secondary empty-basket-icon">
+            <i class="fas fa-shipping-fast"></i>
+        </div>
+        <p>Your payment has been successfully received. Your order number is <strong>#@ViewBag.OrderId</strong>.</p>
+        <p>We will ship your products to your shipping address shortly.</p>
+    </div>
+</div>
