@@ -17,7 +17,6 @@ namespace UnitTests.ApplicationCore.Services.BasketServiceTests
         private readonly Mock<IAsyncRepository<Basket>> _mockBasketRepository;
         private readonly Mock<IAsyncRepository<BasketItem>> _mockBasketItemRepository;
         private readonly int _existingBasketId = 777;
-        private readonly string _existingBuyerId = "253e3ad5-8944-43ef-8dd2-c31e908584dd";
 
         public DeleteBasket()
         {
